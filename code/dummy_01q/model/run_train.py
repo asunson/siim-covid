@@ -112,7 +112,7 @@ def do_valid(net, valid_loader):
 # start here ! ###################################################################################
 
 
-def run_train():
+def run_train(model_layers):
 
     #for fold in [0,1,2,3,4]:
     for fold in [1,]:
@@ -178,7 +178,7 @@ def run_train():
             scaler = amp.GradScaler()
             net = AmpNet().cuda()
         else:
-            net = Net().cuda()
+            net = Net(model_layers).cuda()
 
 
         if initial_checkpoint is not None:

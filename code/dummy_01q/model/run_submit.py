@@ -76,7 +76,7 @@ def do_predict(net, valid_loader, tta=['flip','scale']): #flip
 
 
 
-def run_submit():
+def run_submit(model_layers):
     for fold in [0]:
         out_dir = out_dir = \
             '/root/share1/kaggle/2021/siim-covid-19/result/try-delivery/effb3-full-512-mask/fold%d-fine'%fold
@@ -123,7 +123,7 @@ def run_submit():
 
             ## net ----------------------------------------
             if 1:
-                net = Net().cuda()
+                net = Net(model_layers).cuda()
                 net.load_state_dict(torch.load(initial_checkpoint)['state_dict'], strict=True)
 
                 #---
